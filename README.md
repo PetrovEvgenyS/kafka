@@ -1,0 +1,1 @@
+Использование: `./setup <NODE_ID> <IP-ADDRESS>`
