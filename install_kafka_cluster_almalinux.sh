@@ -9,7 +9,7 @@ KAFKA_DOWNLOAD_URL="https://downloads.apache.org/kafka/${KAFKA_VERSION}/kafka_2.
 KAFKA_USER="kafka"          # Пользователь
 KAFKA_GROUP="kafka"         # Группа
 INSTALL_DIR="/opt/kafka"    # Куда будет установлен Kafka
-DATA_DIR="/var/lib/kafka"   # Где будут хранится данные Kafka (сообщения)
+DATA_DIR="/var/lib/kafka/data"   # Где будут хранится данные Kafka (сообщения)
 LOG_DIR="/var/log/kafka"    # Где будут хранится логи Kafka
 
 # Параметры кластера
@@ -27,6 +27,16 @@ ESC=$(printf '\033') RESET="${ESC}[0m" MAGENTA="${ESC}[35m" RED="${ESC}[31m" GRE
 magentaprint() { printf "${MAGENTA}%s${RESET}\n" "$1"; }
 errorprint() { printf "${RED}%s${RESET}\n" "$1"; }
 greenprint() { printf "${GREEN}%s${RESET}\n" "$1"; }
+
+
+# -------------------------------------------------------------------------------------------------------------------------
+
+
+# Проверка запуска от root
+if [ "$EUID" -ne 0 ]; then
+    errorprint "Скрипт должен быть запущен с правами root!"
+    exit 1
+fi
 
 # Проверка заданных параметров
 checking_the_set_parameters() {
