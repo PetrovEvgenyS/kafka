@@ -1,0 +1,5 @@
+yahoo/kafka-manager
+https://github.com/yahoo/kafka-manager
+
+Confluent Platform Quick Start (Docker) — Confluent Platform
+https://docs.confluent.io/current/quickstart/ce-docker-quickstart.html
